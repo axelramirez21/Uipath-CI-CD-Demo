@@ -42,6 +42,10 @@ stages:
                 - download: current
                   artifact: drop
                   displayName: Download build artifact on build agent
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    artifact: 'drop'
+                    path: $(Build.SourcesDirectory)/bin
                 - powershell: |
                     Import-Module UiPath.Powershell
                     $token = Get-UiPathAuthToken -ClientId $(uatClientId) -UserKey $(uatUserKey) -AccountName $(uatAccountName) -CloudDeployment 'Production' -TenantName $(uatTenantName)
