@@ -1,0 +1,24 @@
+trigger:
+  - master
+variables:
+  - group: uipath-cicd
+  - name: agent.preferPowerShellOnContainers
+    value: "True"
+
+stages:
+  - stage: Build
+    displayName: Create build artifact
+    jobs:
+      - job: BuildArtifact
+        pool:
+          vmImage: "windows-latest"
+        container:
+          image: uipathjenkinsdemo.azurecr.io/uipathrepository:latest
+          endpoint: uipathjenkinsdemo
+
+        steps:
+          - script: C:\UiPath\UiRobot.exe pack $(Build.SourcesDirectory)\project.json -o $(Build.ArtifactStagingDirectory)\ -v 1.0.$(Build.BuildNumber)
+            displayName: "Build the artifact"
+          - publish: $(Build.ArtifactStagingDirectory)
+            artifact: drop
+            
