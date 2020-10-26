@@ -39,13 +39,8 @@ stages:
           runOnce:
             deploy:
               steps:
-                - download: none
-                - task: DownloadBuildArtifacts@0
-                  inputs:
-                  artifactName: uipath-sample.1.0.$(Build.BuildNumber).nupkg
-                  buildType: 'current'
-                  downloadType: 'single'
-                  downloadPath: '$(System.ArtifactsDirectory)'
+                - download: current
+                  artifact: drop
                   displayName: Download build artifact on build agent
                 - powershell: |
                     Import-Module UiPath.Powershell
