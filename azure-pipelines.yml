@@ -32,8 +32,8 @@ stages:
         pool:
           vmImage: "windows-latest"
         container:
-          image: uipathrobot.azurecr.io/uipathrobot:latest
-          endpoint: robot-container-registry
+          image: uipathjenkinsdemo.azurecr.io/uipathrepository:latest
+          endpoint: uipathjenkinsdemo
         environment: uat
         strategy:
           runOnce:
