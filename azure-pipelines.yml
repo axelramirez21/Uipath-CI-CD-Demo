@@ -39,9 +39,10 @@ stages:
           runOnce:
             deploy:
               steps:
-                - download: current
-                  artifact: drop
-                  displayName: Download the current artifact
+                - task: DownloadPipelineArtifact@2
+                  displayName: 'Download Pipeline Artifact'
+                  inputs:
+                      path: $(Pipeline.Workspace)\drop
                 - powershell: |
                     Import-Module UiPath.Powershell
                     $token = Get-UiPathAuthToken -Verbose -ClientId $(uatClientId) -UserKey $(uatUserKey) -AccountName $(uatAccountName)
