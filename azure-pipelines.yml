@@ -39,9 +39,6 @@ stages:
           runOnce:
             deploy:
               steps:
-                - download: current
-                  artifact: drop
-                  displayName: Download build artifact on build agent
                 - task: DownloadPipelineArtifact@2
                   inputs:
                     artifact: 'drop'
