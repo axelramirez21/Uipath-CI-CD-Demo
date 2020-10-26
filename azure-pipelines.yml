@@ -44,5 +44,5 @@ stages:
                   displayName: Download the current artifact
                 - powershell: |
                     Import-Module UiPath.Powershell
-                    $token = Get-UiPathAuthToken -Verbose -ClientId $(uatClientId) -UserKey $(uatUserKey) -AccountName $(uatAccountName) -TenantName $(uatTenantName)
+                    $token = Get-UiPathAuthToken -Verbose -ClientId $(uatClientId) -UserKey $(uatUserKey) -AccountName $(uatAccountName)
                     Add-UiPathPackage -PackageFile $(Pipeline.Workspace)\drop\CI-CD-Robot.1.0.$(Build.BuildNumber).nupkg -AuthToken $token
