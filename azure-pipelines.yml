@@ -41,9 +41,9 @@ stages:
               steps:
                 - task: DownloadPipelineArtifact@2
                   inputs:
-                    artifact: 'drop'
+                    artifact: drop
                     path: $(Build.SourcesDirectory)/bin
                 - powershell: |
                     Import-Module UiPath.Powershell
                     $token = Get-UiPathAuthToken -Verbose -ClientId $(uatClientId) -UserKey $(uatUserKey) -AccountName $(uatAccountName) -TenantName $(uatTenantName)
-                    Add-UiPathPackage -PackageFile D:\a\1\s\bin\uipath-sample.1.0.$(Build.BuildNumber).nupkg -AuthToken $token
+                    Add-UiPathPackage -PackageFile $(Build.SourcesDirectory)\bin\uipath-sample.1.0.$(Build.BuildNumber).nupkg -AuthToken $token
