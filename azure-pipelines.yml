@@ -39,11 +39,10 @@ stages:
           runOnce:
             deploy:
               steps:
-                - task: DownloadPipelineArtifact@2
-                  inputs:
-                    artifact: drop
-                    path: $(Build.SourcesDirectory)/bin
+                - download: current
+                  artifact: drop
+                  displayName: Download the current artifact
                 - powershell: |
                     Import-Module UiPath.Powershell
                     $token = Get-UiPathAuthToken -Verbose -ClientId $(uatClientId) -UserKey $(uatUserKey) -AccountName $(uatAccountName) -TenantName $(uatTenantName)
-                    Add-UiPathPackage -PackageFile $(Build.SourcesDirectory)\bin\uipath-sample.1.0.$(Build.BuildNumber).nupkg -AuthToken $token
+                    Add-UiPathPackage -PackageFile $(Pipeline.Workspace)\drop\CI-CD-Robot.1.0.$(Build.BuildNumber).nupkg -AuthToken $token
