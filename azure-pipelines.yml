@@ -45,5 +45,5 @@ stages:
                     path: $(Build.SourcesDirectory)
                 - powershell: |
                     Import-Module UiPath.Powershell
-                    $token = Get-UiPathAuthToken -Verbose -ClientId $(uatClientId) -UserKey $(uatUserKey) -AccountName $(uatAccountName) -TenantName $(uatTenantName)
+                    $token = Get-UiPathAuthToken -Verbose Get-UiPathAuthToken -ClientId '8DEv1AMNXczW3y4U15LL3jYf62jK93n5' -UserKey 'SMQuXkSoYQ5BYj_qS1orVzuxfAPAFaizS1ru_eI8HIQ9K' -AccountName 'darkelfaxe' -CloudDeployment 'Production' -TenantName 'darkelfaxe'
                     Add-UiPathPackage -PackageFile $(Build.SourcesDirectory)\drop\CI-CD-Robot.1.0.$(Build.BuildNumber).nupkg -AuthToken $token
